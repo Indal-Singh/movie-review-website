@@ -13,7 +13,8 @@ const PORT = process.env.PORT||5000;
 const db = require('./config/db');
 
 // Middleware setup
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // EJS setup

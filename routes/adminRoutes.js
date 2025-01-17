@@ -3,10 +3,11 @@ const router = express.Router();
 const Category = require('../models/category');
 const Movie = require('../models/movie');
 const { ensureAuthenticated } = require('../middleware/authMiddleware');
+const { addCategory, listCategory, deleteCategory } = require('../controllers/categoryController');
+const { addMovies, listMovies, saveMovieData } = require('../controllers/movieController');
 
 // Apply ensureAuthenticated middleware to all admin routes
-router.use(ensureAuthenticated);
-
+// router.use(ensureAuthenticated);
 
 // Admin dashboard route
 router.get('/dashboard', (req, res) => {
@@ -14,39 +15,21 @@ router.get('/dashboard', (req, res) => {
 });
 
 // Add category
-router.get('/categories', (req, res) => {
-    let categories = [];
-    res.render('admin/layout',{body:"categories",categories:categories});
-});
+router.get('/categories', listCategory);
+
 router.get('/add-category', (req, res) => {
-    res.render('admin/add-category');
+    res.render('admin/layout',{body:"add-category"});
 });
 
-router.post('/add-category', (req, res) => {
-    const { name } = req.body;
-    Category.create(name, (err) => {
-        if (err) return res.send('Error adding category');
-        res.redirect('/admin/dashboard');
-    });
-});
+router.post('/add-category', addCategory);
 
+router.get('/category/delete/:id', deleteCategory);
+
+router.get('/movies',listMovies)
 // Add movie
-router.get('/add-movie', (req, res) => {
-    Category.getAll((err, categories) => {
-        if (err) return res.send('Error fetching categories');
-        res.render('admin/add-movie', { categories });
-    });
-});
+router.get('/movies/add', addMovies);
 
-router.post('/add-movie', (req, res) => {
-    const { title, category_id, review } = req.body;
-    const image_path = req.file ? req.file.path : ''; // Image upload handling
-    Movie.create(title, category_id, review, image_path, (err) => {
-        if (err) return res.send('Error adding movie');
-        res.redirect('/admin/dashboard');
-    });
-});
-
+router.post('/movies/add', saveMovieData);
 
 
 module.exports = router;
