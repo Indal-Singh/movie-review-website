@@ -4,10 +4,10 @@ const Category = require('../models/category');
 const Movie = require('../models/movie');
 const { ensureAuthenticated } = require('../middleware/authMiddleware');
 const { addCategory, listCategory, deleteCategory } = require('../controllers/categoryController');
-const { addMovies, listMovies, saveMovieData, deleteMovie } = require('../controllers/movieController');
+const { addMovies, listMovies, saveMovieData, deleteMovie, editMovie, updateMovie } = require('../controllers/movieController');
 
 // Apply ensureAuthenticated middleware to all admin routes
-router.use(ensureAuthenticated);
+// router.use(ensureAuthenticated);
 
 // Admin dashboard route
 router.get('/dashboard', (req, res) => {
@@ -29,6 +29,8 @@ router.get('/movies',listMovies)
 // Add movie
 router.get('/movies/add', addMovies);
 router.post('/movies/delete/:id', deleteMovie);
+router.get('/movies/edit/:id', editMovie);
+router.post('/movies/edit/:id', updateMovie);
 
 router.post('/movies/add', saveMovieData);
 

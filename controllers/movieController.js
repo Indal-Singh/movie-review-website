@@ -58,3 +58,40 @@ module.exports.deleteMovie = (req, res) => {
         res.redirect(`/${process.env.ADMIN_URI}/movies`);
     })
 };
+
+module.exports.editMovie = (req,res) =>{
+    const editId = req.params['id'];
+    let categories = [];
+    Category.getAll((err, data) => {
+        if (err) data = [];
+        categories = data;
+    });
+    Movie.getMovieDetailsById(editId,(err,movie) => {
+        if(err) res.status(500).send("Faild to Open Edit This Movie")
+        res.render('admin/layout', 
+            { 
+                body: "edit-movie",
+                movie:movie[0],
+                categories
+            }
+        );
+        })
+}
+
+module.exports.updateMovie = [
+    upload.single('movie-poster'),
+    (req,res) =>{
+    const movieId = req.params['id'];
+    const { 'movie-title': title, category, 'release-date': releaseDate, 'movie-description': description, rating,'old-image-name':oldImageName } = req.body;
+    const imageName = req.file ? req.file.filename : ''; // Image upload handling
+    Movie.update(movieId,title, category, releaseDate, description, rating, imageName, (err) => {
+        if (err) return res.status(500).send('Error adding movie');
+        // remove old file name if we are updating new image
+        if(imageName)
+        {
+            fs.unlinkSync('public/movies/'+oldImageName);
+        }
+        // res.status(200).send('Movie added successfully');
+        res.redirect(`/${process.env.ADMIN_URI}/movies`);
+    });
+}]
