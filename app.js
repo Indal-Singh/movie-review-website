@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 const session = require('express-session');
-const bodyParser = require('body-parser');
 const path = require('path');
 const flash = require('connect-flash');
 const dotenv = require('dotenv');
+const webRoutes = require('./routes/web');
 
 dotenv.config();
 
@@ -46,6 +46,7 @@ const authRoutes = require('./routes/authRoutes');
 
 app.use('/admin-panel', adminRoutes);
 app.use('/auth', authRoutes);
+app.use('/',webRoutes);
 
 // Start server
 app.listen(PORT, () => {
