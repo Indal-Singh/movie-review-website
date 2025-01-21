@@ -2,23 +2,27 @@ name: Deploy
 
 on:
   workflow_dispatch:
+    inputs:
+      ref:
+        description: 'The branch or tag to deploy'
+        required: true
+        default: 'main'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Install sshpass
-      run: sudo apt-get install -y sshpass
-
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.inputs.ref }}
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+    - run: npm install
+    - run: npm run build # Add your build command here
     - name: Deploy to server
-      env:
-        SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
       run: |
-        sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST "cd $REMOTE_PATH && git pull"
+        # Add your deployment commands here
+        echo "Deploying to server..."

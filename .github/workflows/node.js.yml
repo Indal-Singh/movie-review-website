@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x , 22.x]
+        node-version: [18.x, 20.x, 22.x]
 
     steps:
     - uses: actions/checkout@v3
@@ -22,15 +22,17 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install
     - run: npm test
-    # # Add a step to trigger the deployment workflow if tests pass
-    # - name: Trigger deployment
-    #   if: success()
-    #   uses: actions/github-script@v6
-    #   with:
-    #     script: |
-    #       github.rest.actions.createWorkflowDispatch({
-    #         owner: context.repo.owner,
-    #         repo: context.repo.repo,
-    #         workflow_id: 'deploy.yml',
-    #         ref: context.ref,
-    #       })
+    - name: Trigger deployment
+      if: success()
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.actions.createWorkflowDispatch({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            workflow_id: 'deploy.yml',
+            ref: context.ref,
+            inputs: {
+              ref: context.ref
+            }
+          })
