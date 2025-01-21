@@ -22,15 +22,15 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install
     - run: npm test
-    # Add a step to trigger the deployment workflow if tests pass
-    - name: Trigger deployment
-      if: success()
-      uses: actions/github-script@v6
-      with:
-        script: |
-          github.rest.actions.createWorkflowDispatch({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            workflow_id: 'deploy.yml',
-            ref: context.ref,
-          })
+    # # Add a step to trigger the deployment workflow if tests pass
+    # - name: Trigger deployment
+    #   if: success()
+    #   uses: actions/github-script@v6
+    #   with:
+    #     script: |
+    #       github.rest.actions.createWorkflowDispatch({
+    #         owner: context.repo.owner,
+    #         repo: context.repo.repo,
+    #         workflow_id: 'deploy.yml',
+    #         ref: context.ref,
+    #       })
