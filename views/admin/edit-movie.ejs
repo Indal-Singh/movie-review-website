@@ -1,4 +1,4 @@
-<h1 class="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Add Movie</h1>
+<h1 class="text-3xl font-bold mb-6 text-gray-800 dark:text-white">Edit Movie - <%= movie.title %></h1>
 
 <form id="edit-movie-form" class="max-w-lg mx-auto" method="POST" enctype="multipart/form-data">
   <div class="grid md:grid-cols-2 md:gap-6">
@@ -24,7 +24,7 @@
         <option value="<%= category.id %>" <%= category.id === movie.cat_id ? 'selected' : '' %>>
           <%= category.name %>
         </option>
-        <% }) %>
+      <% }) %>
     </select>
   </div>
   <div class="mb-5">

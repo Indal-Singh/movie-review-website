@@ -54,7 +54,7 @@ LEFT JOIN (
             if (err) return callback(err);
             callback(null, results);
         });
-    },
+    }
 };
 
 module.exports = Movie;

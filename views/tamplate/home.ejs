@@ -1,121 +1,75 @@
-<section class="top-header-conatainer">
-    <div class="flex gap-4">
-        <div class="left-m-container max-w-[80%]">
-            <div class="m-box bg-[#006883]">
-                <a href="/">
-                    <img src="https://www.pluggedin.com/wp-content/uploads/2025/01/web-topper-30.jpg" alt="">
-                    <div class="m-content text-white p-2">
-                        <h2 class="m-post-title text-3xl font-bold">
-                            <a href="movie-reviews/back-in-action-2025/index.html">
-                                Back in Action </a>
-                        </h2>
-                        <div class="m-post-body">
-                            <p>‘Back in Action’ is an action comedy with a surprisingly sweet pro-family message … but a
-                                fair number of content issues as well.</p>
-                        </div>
-                </a>
-            </div>
+<section class="top-header-container p-4">
+  <div class="flex flex-col md:flex-row gap-4">
+    <div class="left-m-container md:max-w-[80%]">
+      <div class="m-box bg-[#006883]">
+        <a href="<%= movies[0].url %>">
+          <img src="/movies/<%= movies[0].image_path %>" alt="" class="w-full h-auto">
+        </a>
+        <div class="m-content text-white p-2">
+          <h2 class="m-post-title text-3xl font-bold">
+            <a href="<%= movies[0].url %>">
+              <%= movies[0].title %>
+            </a>
+          </h2>
+          <div class="m-post-body">
+            <p><%- movies[0].parseContentHtml %></p>
+          </div>
         </div>
+      </div>
     </div>
     <div class="right-m-container bg-[#408078] p-2 w-full">
-        <h2 class="text-white font-bold">
-            <i class='fas fa-ticket-alt' class=""></i>
-            In Theaters
-        </h2>
-        <hr class="bg-white border-white border-2 mb-2">
-        <div class="post-list">
-            <div class="post flex gap-2 mb-2">
-                <div class="p-img-container w-[100px]">
-                    <a href="/">
-                        <img src="https://www.pluggedin.com/wp-content/uploads/2025/01/web-topper-31-1024x587.jpg"
-                            class="w-full" alt="">
-                    </a>
-                </div>
-                <div class="p-content">
-                    <h3 class="text-white font-bold">Between Border</h3>
-                    <p class="text-white">January 17,2023</p>
-                </div>
-            </div>
-            <div class="post flex gap-2 mb-2">
-                <div class="p-img-container w-[100px]">
-                    <a href="/">
-                        <img src="https://www.pluggedin.com/wp-content/uploads/2025/01/web-topper-31-1024x587.jpg"
-                            class="w-full" alt="">
-                    </a>
-                </div>
-                <div class="p-content">
-                    <h3 class="text-white font-bold">Between Border</h3>
-                    <p class="text-white">January 17,2023</p>
-                </div>
-            </div>
-            <div class="post flex gap-2 mb-2">
-                <div class="p-img-container w-[100px]">
-                    <a href="/">
-                        <img src="https://www.pluggedin.com/wp-content/uploads/2025/01/web-topper-31-1024x587.jpg"
-                            class="w-full" alt="">
-                    </a>
-                </div>
-                <div class="p-content">
-                    <h3 class="text-white font-bold">Between Border</h3>
-                    <p class="text-white">January 17,2023</p>
-                </div>
-            </div>
+      <h2 class="text-white font-bold">
+        <i class='fas fa-ticket-alt'></i>
+        In Theaters
+      </h2>
+      <hr class="bg-white border-white border-2 mb-2">
+      <div class="post-list">
+        <% movies.slice(1).forEach(function (movie) { %>
+        <div class="post flex gap-2 mb-2">
+          <div class="p-img-container w-[100px]">
+            <a href="<%= movie.url %>">
+              <img src="/movies/<%= movie.image_path %>" class="w-full h-auto" alt="">
+            </a>
+          </div>
+          <div class="p-content">
+            <h3 class="text-white font-bold"><%= movie.title %></h3>
+            <p class="text-white"><%= movie.release_date %></p>
+          </div>
         </div>
+        <% }) %>
+      </div>
     </div>
-    </div>
+  </div>
 </section>
 
-<section class="middle-post-conatiner">
-    <div class="list-streaming-dvd bg-white shadow-lg shadow-[#63A844] p-5">
-        <div class="l-heading flex justify-between">
-            <h2 class="text-[#63A844] font-bold">
-                <i aria-hidden="true" class="fas fa-film"></i>
-                Streaming & DVD
-            </h2>
-            <h4>
-                <a href="" class="text-[#63A844] text-sm">More >> </a>
-            </h4>
-        </div>
-        <hr class="bg-white border-[#63A844] border-2 mb-2">
-        <div class="listing-m-card">
-            <div class="grid grid-cols-8 gap-4">
-                <div class="w-full box">
-                    <div class="l-p-img-container">
-                        <img class="w-full" src="https://www.pluggedin.com/wp-content/uploads/2025/01/web-topper-30.jpg" alt="">
-                    </div>
-                    <div class="l-p-content py-2">
-                        <h3 class="font-bold text-gray-600">Back in Action</h3>
-                        <p class="text-gray-400">January 17, 2025</p>
-                    </div>
-                </div>
-                <div class="w-full box">
-                    <div class="l-p-img-container">
-                        <img class="w-full" src="https://www.pluggedin.com/wp-content/uploads/2025/01/web-topper-30.jpg" alt="">
-                    </div>
-                    <div class="l-p-content py-2">
-                        <h3 class="font-bold text-gray-600">Back in Action</h3>
-                        <p class="text-gray-400">January 17, 2025</p>
-                    </div>
-                </div>
-                <div class="w-full box">
-                    <div class="l-p-img-container">
-                        <img class="w-full" src="https://www.pluggedin.com/wp-content/uploads/2025/01/web-topper-30.jpg" alt="">
-                    </div>
-                    <div class="l-p-content py-2">
-                        <h3 class="font-bold text-gray-600">Back in Action</h3>
-                        <p class="text-gray-400">January 17, 2025</p>
-                    </div>
-                </div>
-                <div class="w-full box">
-                    <div class="l-p-img-container">
-                        <img class="w-full" src="https://www.pluggedin.com/wp-content/uploads/2025/01/web-topper-30.jpg" alt="">
-                    </div>
-                    <div class="l-p-content py-2">
-                        <h3 class="font-bold text-gray-600">Back in Action</h3>
-                        <p class="text-gray-400">January 17, 2025</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<section class="middle-post-container p-4">
+  <div class="list-streaming-dvd bg-white shadow-lg shadow-[#63A844] p-5">
+    <div class="l-heading flex justify-between">
+      <h2 class="text-[#63A844] font-bold">
+        <i aria-hidden="true" class="fas fa-film"></i>
+        Streaming & DVD
+      </h2>
+      <h4>
+        <a href="" class="text-[#63A844] text-sm">More >> </a>
+      </h4>
     </div>
+    <hr class="bg-white border-[#63A844] border-2 mb-2">
+    <div class="listing-m-card">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <% movies.forEach(function (movie) { %>
+        <div class="w-full box">
+          <div class="l-p-img-container">
+            <a href="<%= movie.url %>">
+            <img class="w-full h-auto" src="/movies/<%= movie.image_path %>" alt="">
+          </a>
+          </div>
+          <div class="l-p-content py-2">
+            <h3 class="font-bold text-gray-600"><%=movie.title%></h3>
+            <p class="text-gray-400"><%=movie.release_date%></p>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
 </section>

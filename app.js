@@ -4,7 +4,6 @@ const session = require('express-session');
 const path = require('path');
 const flash = require('connect-flash');
 const dotenv = require('dotenv');
-const webRoutes = require('./routes/web');
 
 dotenv.config();
 
@@ -43,6 +42,7 @@ app.use((req, res, next) => {
 // Routes
 const adminRoutes = require('./routes/adminRoutes');
 const authRoutes = require('./routes/authRoutes');
+const webRoutes = require('./routes/webRoutes');
 
 app.use('/admin-panel', adminRoutes);
 app.use('/auth', authRoutes);
