@@ -1,20 +1,20 @@
-<section class="post-details-header-top flex justify-between items-center py-5">
-    <div class="left-pd-conatiner">
-        <span class="catName p-2 bg-[#63A844] text-white">DVD & Streaming</span>
-        <h1 class="font-bold text-6xl">Back in Action</h1>
+<section class="post-details-header-top flex flex-col md:flex-row justify-between items-center py-5">
+    <div class="left-pd-container mb-4 md:mb-0">
+        <span class="catName p-2 bg-[#63A844] text-white"><%= movie.cat_name %></span>
+        <h1 class="font-bold text-3xl md:text-6xl"><%= movie.title %></h1>
         <p>
             PG-13
             <a href="" class="text-[#5C7F71]">Action/Adventure, Comedy</a>
         </p>
     </div>
-    <div class="right-pd-container">
-        <div class="text-3xl">
+    <div class="right-pd-container text-center">
+        <div class="text-2xl md:text-3xl">
             Content Caution
         </div>
         <div class="flex gap-4 text-center m-2">
             <div>
                 <span class="bg-red-600 text-white rounded-full p-1 text-sm">
-                    Havey
+                    Heavy
                 </span>
                 <p>Kids</p>
             </div>
@@ -30,10 +30,14 @@
                 </span>
                 <p>Adults</p>
             </div>
-
         </div>
     </div>
 </section>
-<main class="main-content bg-gray-100">
-    
+<main class="main-content bg-gray-100 p-4">
+    <div class="img-container flex justify-center mb-4">
+        <img src="/movies/<%= movie.image_path %>" alt="<%= movie.title %> Poster" class="max-w-full h-auto rounded-md">
+    </div>
+    <div class="text-content-container max-w-4xl mx-auto">
+        <%- movie.description %>
+    </div>
 </main>
