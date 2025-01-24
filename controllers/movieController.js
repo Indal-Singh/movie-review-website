@@ -6,6 +6,10 @@ const fs = require('fs');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
+        // check id directory exist or not
+        if (!fs.existsSync('public/movies')) {
+            fs.mkdirSync('public/movies');
+        }
         cb(null, 'public/movies/');
     },
     filename: function (req, file, cb) {
