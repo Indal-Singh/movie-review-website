@@ -28,6 +28,17 @@
     </select>
   </div>
   <div class="mb-5">
+    <label for="genres" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Genres</label>
+    <select id="genres" name="genres" multiple
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <% genres.forEach(function (genre){ %>
+        <option value="<%= genre.id %>" <%= movie.genres.includes(genre.id) ? 'selected' : '' %>>
+          <%= genre.name %>
+        </option>
+      <% }) %>
+    </select>
+  </div>
+  <div class="mb-5">
     <label for="movie-description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Movie Description</label>
     <div id="movie-description"
       class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -38,6 +49,104 @@
     <input type="number" id="rating" name="rating" min="0" max="10" step="0.1"
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       placeholder="Enter rating (0-10)" required value="<%= movie.rating %>">
+  </div>
+  <div class="mb-5">
+    <label for="in-theaters" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">In Theaters</label>
+    <input type="text" id="in-theaters" name="in-theaters" placeholder="Enter in theaters"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="<%= movie.in_theaters %>">
+  </div>
+  <div class="mb-5">
+    <label for="runtime" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Runtime (minutes)</label>
+    <input type="text" id="runtime" name="runtime" min="0"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Enter runtime in minutes" required value="<%= movie.runtime %>">
+  </div>
+  <div class="mb-5">
+    <label for="director" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Director</label>
+    <input type="text" id="director" name="director"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Enter director's name" required value="<%= movie.director %>">
+  </div>
+  <div class="mb-5">
+    <label for="cast" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cast</label>
+    <input type="text" id="cast" name="cast"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Enter cast members" required value="<%= movie.cast %>">
+  </div>
+  <div class="mb-5">
+    <label for="distributor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Distributor</label>
+    <input type="text" id="distributor" name="distributor"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Enter distributor's name" required value="<%= movie.distributor %>">
+  </div>
+  <div class="mb-5">
+    <label for="reviewer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Reviewer</label>
+    <input type="text" id="reviewer" name="reviewer"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Enter reviewer's name" required value="<%= movie.reviewer %>">
+  </div>
+  <div class="mb-5">
+    <label for="mpaa-rating" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MPAA Rating</label>
+    <select id="mpaa-rating" name="mpaa-rating"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+      <option value="" selected>Choose a rating</option>
+      <option value="G" <%= movie.mpaa_rating === 'G' ? 'selected' : '' %>>G - General Audiences</option>
+      <option value="PG" <%= movie.mpaa_rating === 'PG' ? 'selected' : '' %>>PG - Parental Guidance Suggested</option>
+      <option value="PG-13" <%= movie.mpaa_rating === 'PG-13' ? 'selected' : '' %>>PG-13 - Parents Strongly Cautioned</option>
+      <option value="R" <%= movie.mpaa_rating === 'R' ? 'selected' : '' %>>R - Restricted</option>
+      <option value="NC-17" <%= movie.mpaa_rating === 'NC-17' ? 'selected' : '' %>>NC-17 - Adults Only</option>
+      <option value="TV-MA" <%= movie.mpaa_rating === 'TV-MA' ? 'selected' : '' %>>TV-MA - Mature Audience Only</option>
+      <option value="TV-14" <%= movie.mpaa_rating === 'TV-14' ? 'selected' : '' %>>TV-14 - Parents Strongly Cautioned</option>
+      <option value="TV-PG" <%= movie.mpaa_rating === 'TV-PG' ? 'selected' : '' %>>TV-PG - Parental Guidance Suggested</option>
+      <option value="TV-G" <%= movie.mpaa_rating === 'TV-G' ? 'selected' : '' %>>TV-G - General Audience</option>
+      <option value="TV-Y7" <%= movie.mpaa_rating === 'TV-Y7' ? 'selected' : '' %>>TV-Y7 - Directed to Older Children</option>
+      <option value="TV-Y" <%= movie.mpaa_rating === 'TV-Y' ? 'selected' : '' %>>TV-Y - All Children</option>
+    </select>
+  </div>
+  <div class="mb-5">
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kids Content Caution</label>
+    <div class="flex items-center mb-2">
+      <input id="kids-heavy" type="radio" name="kids-content-caution" value="heavy" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <%= movie.kids_content_caution === 'heavy' ? 'checked' : '' %>>
+      <label for="kids-heavy" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Heavy</label>
+    </div>
+    <div class="flex items-center mb-2">
+      <input id="kids-medium" type="radio" name="kids-content-caution" value="medium" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <%= movie.kids_content_caution === 'medium' ? 'checked' : '' %>>
+      <label for="kids-medium" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Medium</label>
+    </div>
+    <div class="flex items-center mb-2">
+      <input id="kids-light" type="radio" name="kids-content-caution" value="light" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <%= movie.kids_content_caution === 'light' ? 'checked' : '' %>>
+      <label for="kids-light" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Light</label>
+    </div>
+  </div>
+  <div class="mb-5">
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teens Content Caution</label>
+    <div class="flex items-center mb-2">
+      <input id="teens-heavy" type="radio" name="teens-content-caution" value="heavy" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <%= movie.teens_content_caution === 'heavy' ? 'checked' : '' %>>
+      <label for="teens-heavy" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Heavy</label>
+    </div>
+    <div class="flex items-center mb-2">
+      <input id="teens-medium" type="radio" name="teens-content-caution" value="medium" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <%= movie.teens_content_caution === 'medium' ? 'checked' : '' %>>
+      <label for="teens-medium" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Medium</label>
+    </div>
+    <div class="flex items-center mb-2">
+      <input id="teens-light" type="radio" name="teens-content-caution" value="light" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <%= movie.teens_content_caution === 'light' ? 'checked' : '' %>>
+      <label for="teens-light" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Light</label>
+    </div>
+  </div>
+  <div class="mb-5">
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Adults Content Caution</label>
+    <div class="flex items-center mb-2">
+      <input id="adults-heavy" type="radio" name="adults-content-caution" value="heavy" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <%= movie.adults_content_caution === 'heavy' ? 'checked' : '' %>>
+      <label for="adults-heavy" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Heavy</label>
+    </div>
+    <div class="flex items-center mb-2">
+      <input id="adults-medium" type="radio" name="adults-content-caution" value="medium" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <%= movie.adults_content_caution === 'medium' ? 'checked' : '' %>>
+      <label for="adults-medium" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Medium</label>
+    </div>
+    <div class="flex items-center mb-2">
+      <input id="adults-light" type="radio" name="adults-content-caution" value="light" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <%= movie.adults_content_caution === 'light' ? 'checked' : '' %>>
+      <label for="adults-light" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Light</label>
+    </div>
   </div>
   <div class="mb-5">
     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="movie-poster">Upload Movie Poster</label>

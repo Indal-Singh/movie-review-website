@@ -9,8 +9,7 @@
         placeholder="Enter movie title" required>
     </div>
     <div class="mb-5">
-      <label for="release-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Release
-        Date</label>
+      <label for="release-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Release Date</label>
       <input type="date" id="release-date" name="release-date"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         required>
@@ -19,18 +18,29 @@
   <div class="mb-5">
     <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
     <select id="category" name="category"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
       <option selected>Choose a category</option>
       <% categories.forEach(function (category){ %>
         <option value="<%= category.id %>">
           <%= category.name %>
         </option>
-        <% }) %>
+      <% }) %>
     </select>
   </div>
   <div class="mb-5">
-    <label for="movie-description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Movie
-      Description</label>
+    <label for="genres" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Genres</label>
+    <select id="genres" name="genres" multiple
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+      <option selected disabled>Choose genres</option>
+      <% genres.forEach(function (genre){ %>
+        <option value="<%= genre.id %>">
+          <%= genre.name %>
+        </option>
+      <% }) %>
+    </select>
+  </div>
+  <div class="mb-5">
+    <label for="movie-description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Movie Description</label>
     <div id="movie-description"
       class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
     </div>
@@ -42,15 +52,111 @@
       placeholder="Enter rating (0-10)" required>
   </div>
   <div class="mb-5">
-    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="movie-poster">Upload Movie
-      Poster</label>
+    <label for="in-theaters" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">In Theaters</label>
+    <input type="text" id="in-theaters" name="in-theaters" placeholder="Enter in theaters"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+  </div>
+  <div class="mb-5">
+    <label for="runtime" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Runtime (minutes)</label>
+    <input type="text" id="runtime" name="runtime" min="0"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Enter runtime in minutes" required>
+  </div>
+  <div class="mb-5">
+    <label for="director" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Director</label>
+    <input type="text" id="director" name="director"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Enter director's name" required>
+  </div>
+  <div class="mb-5">
+    <label for="cast" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cast</label>
+    <input type="text" id="cast" name="cast"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Enter cast members" required>
+  </div>
+  <div class="mb-5">
+    <label for="distributor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Distributor</label>
+    <input type="text" id="distributor" name="distributor"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Enter distributor's name" required>
+  </div>
+  <div class="mb-5">
+    <label for="reviewer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Reviewer</label>
+    <input type="text" id="reviewer" name="reviewer"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Enter reviewer's name" required>
+  </div>
+  <div class="mb-5">
+    <label for="mpaa-rating" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">MPAA Rating</label>
+    <select id="mpaa-rating" name="mpaa-rating"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+      <option value="" selected>Choose a rating</option>
+      <option value="G">G - General Audiences</option>
+      <option value="PG">PG - Parental Guidance Suggested</option>
+      <option value="PG-13">PG-13 - Parents Strongly Cautioned</option>
+      <option value="R">R - Restricted</option>
+      <option value="NC-17">NC-17 - Adults Only</option>
+      <option value="TV-MA">TV-MA - Mature Audience Only</option>
+      <option value="TV-14">TV-14 - Parents Strongly Cautioned</option>
+      <option value="TV-PG">TV-PG - Parental Guidance Suggested</option>
+      <option value="TV-G">TV-G - General Audience</option>
+      <option value="TV-Y7">TV-Y7 - Directed to Older Children</option>
+      <option value="TV-Y">TV-Y - All Children</option>
+    </select>
+  </div>
+  <div class="mb-5">
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kids Content Caution</label>
+    <div class="flex items-center mb-2">
+      <input id="kids-heavy" type="radio" name="kids-content-caution" value="heavy" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="kids-heavy" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Heavy</label>
+    </div>
+    <div class="flex items-center mb-2">
+      <input id="kids-medium" type="radio" name="kids-content-caution" value="medium" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="kids-medium" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Medium</label>
+    </div>
+    <div class="flex items-center mb-2">
+      <input id="kids-light" type="radio" name="kids-content-caution" value="light" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="kids-light" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Light</label>
+    </div>
+  </div>
+  <div class="mb-5">
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Teens Content Caution</label>
+    <div class="flex items-center mb-2">
+      <input id="teens-heavy" type="radio" name="teens-content-caution" value="heavy" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="teens-heavy" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Heavy</label>
+    </div>
+    <div class="flex items-center mb-2">
+      <input id="teens-medium" type="radio" name="teens-content-caution" value="medium" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="teens-medium" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Medium</label>
+    </div>
+    <div class="flex items-center mb-2">
+      <input id="teens-light" type="radio" name="teens-content-caution" value="light" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="teens-light" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Light</label>
+    </div>
+  </div>
+  <div class="mb-5">
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Adults Content Caution</label>
+    <div class="flex items-center mb-2">
+      <input id="adults-heavy" type="radio" name="adults-content-caution" value="heavy" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="adults-heavy" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Heavy</label>
+    </div>
+    <div class="flex items-center mb-2">
+      <input id="adults-medium" type="radio" name="adults-content-caution" value="medium" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="adults-medium" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Medium</label>
+    </div>
+    <div class="flex items-center mb-2">
+      <input id="adults-light" type="radio" name="adults-content-caution" value="light" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="adults-light" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Light</label>
+    </div>
+  </div>
+  <div class="mb-5">
+    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="movie-poster">Upload Movie Poster</label>
     <input
       class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
       id="movie-poster" type="file" accept="image/*" name="movie-poster">
   </div>
   <button type="submit"
-    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
-    Movie</button>
+    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Movie</button>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 <script>
@@ -77,6 +183,4 @@
     descriptionInput.value = quill.root.innerHTML;
     form.appendChild(descriptionInput);
   });
-
-
 </script>

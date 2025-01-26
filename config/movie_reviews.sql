@@ -48,6 +48,8 @@ ALTER TABLE `admin`
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
+ALTER TABLE `movies` ADD `genres` VARCHAR(255) NULL AFTER `image_path`, ADD `in_theaters` VARCHAR(255) NULL AFTER `genres`, ADD `runtime` VARCHAR(255) NULL AFTER `in_theaters`, ADD `director` VARCHAR(255) NULL AFTER `runtime`, ADD `cast` VARCHAR(255) NULL AFTER `director`, ADD `distributor` VARCHAR(255) NULL AFTER `cast`, ADD `reviewer` VARCHAR(255) NULL AFTER `distributor`, ADD `mpaa_rating` VARCHAR(255) NULL AFTER `reviewer`, ADD `kids_content_caution` VARCHAR(255), ADD `teens_content_caution` VARCHAR(255),ADD `adults_content_caution` VARCHAR(255) NULL AFTER `mpaa_rating`;
+
 --
 -- AUTO_INCREMENT for table `movies`
 --

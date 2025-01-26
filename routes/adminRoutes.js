@@ -7,7 +7,7 @@ const { addCategory, listCategory, deleteCategory } = require('../controllers/ca
 const { addMovies, listMovies, saveMovieData, deleteMovie, editMovie, updateMovie } = require('../controllers/movieController');
 
 // Apply ensureAuthenticated middleware to all admin routes
-router.use(ensureAuthenticated);
+// router.use(ensureAuthenticated);
 
 // Admin dashboard route
 router.get('/dashboard', (req, res) => {

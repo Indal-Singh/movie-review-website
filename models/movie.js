@@ -12,9 +12,21 @@ LEFT JOIN (
             callback(null, results);
         });
     },
-    create: (title, category_id, releaseDate, description, rating, imagePath, callback) => {
-        db.query('INSERT INTO movies (title, category_id, release_date, description,rating,image_path) VALUES (?, ?, ?, ?, ?, ?)',
-            [title, category_id, releaseDate, description, rating, imagePath],
+    create: (title, category_id, releaseDate, description, rating, imagePath,
+            genres,
+            inTheaters,
+            runtime,
+            director,
+            cast,
+            distributor,
+            reviewer,
+            mpaaRating,
+            kidsContentCaution,
+            teensContentCaution,
+            adultsContentCaution,
+        callback) => {
+        db.query('INSERT INTO movies (title, category_id, release_date, description, rating, image_path, genres, in_theaters, runtime, director, cast, distributor, reviewer, mpaa_rating, kids_content_caution, teens_content_caution, adults_content_caution) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [title, category_id, releaseDate, description, rating, imagePath, JSON.stringify(genres), inTheaters, runtime, director, cast, distributor, reviewer, mpaaRating, kidsContentCaution, teensContentCaution, adultsContentCaution],
             (err, results) => {
                 if (err) return callback(err);
                 callback(null, results);
@@ -38,10 +50,21 @@ LEFT JOIN (
             callback(null, results);
         })
     },
-    update: (movieId, title, category_id, releaseDate, description, rating, imagePath, callback) => {
-        let query = `UPDATE movies SET title=?, category_id=?, release_date=?, description=?, rating=?`;
-        let queryParams = [title, category_id, releaseDate, description, rating];
-    
+    update: (movieId, title, category_id, releaseDate, description, rating, imagePath,
+            genres,
+            inTheaters,
+            runtime,
+            director,
+            cast,
+            distributor,
+            reviewer,
+            mpaaRating,
+            kidsContentCaution,
+            teensContentCaution,
+            adultsContentCaution,
+        callback) => {
+        let query = `UPDATE movies SET title=?, category_id=?, release_date=?, description=?, rating=?, genres=?, in_theaters=?, runtime=?, director=?, cast=?, distributor=?, reviewer=?, mpaa_rating=?, kids_content_caution=?, teens_content_caution=?, adults_content_caution=?`;
+        let queryParams = [title, category_id, releaseDate, description, rating, JSON.stringify(genres), inTheaters, runtime, director, cast, distributor, reviewer, mpaaRating, kidsContentCaution, teensContentCaution, adultsContentCaution];
         if (imagePath) {
             query += `, image_path=?`;
             queryParams.push(imagePath);
@@ -49,9 +72,10 @@ LEFT JOIN (
     
         query += ` WHERE id=?`;
         queryParams.push(movieId);
-    
+        
         db.query(query, queryParams, (err, results) => {
             if (err) return callback(err);
+            if (results.affectedRows === 0) return callback(new Error('No rows updated'));
             callback(null, results);
         });
     }
