@@ -1,4 +1,5 @@
 <section class="top-header-container p-4">
+  <% if (movies.length > 0) { %>
   <div class="flex flex-col md:flex-row gap-4">
     <div class="left-m-container md:max-w-[80%]">
       <div class="m-box bg-[#006883]">
@@ -40,6 +41,9 @@
       </div>
     </div>
   </div>
+  <% } else { %>
+  <p class="text-center text-gray-700 dark:text-gray-300">No movies available.</p>
+  <% } %>
 </section>
 
 <section class="middle-post-container p-4">
@@ -60,12 +64,12 @@
         <div class="w-full box">
           <div class="l-p-img-container">
             <a href="<%= movie.url %>">
-            <img class="w-full h-auto" src="/movies/<%= movie.image_path %>" alt="">
-          </a>
+              <img class="w-full h-auto" src="/movies/<%= movie.image_path %>" alt="">
+            </a>
           </div>
           <div class="l-p-content py-2">
-            <h3 class="font-bold text-gray-600"><%=movie.title%></h3>
-            <p class="text-gray-400"><%=movie.release_date%></p>
+            <h3 class="font-bold text-gray-600"><%= movie.title %></h3>
+            <p class="text-gray-400"><%= movie.release_date %></p>
           </div>
         </div>
         <% }) %>

@@ -1,9 +1,9 @@
 <section class="post-details-header-top flex flex-col md:flex-row justify-between items-center py-5">
     <div class="left-pd-container mb-4 md:mb-0">
-        <span class="catName p-2 bg-[#63A844] text-white"><%= movie.cat_name %></span>
-        <h1 class="font-bold text-3xl md:text-6xl"><%= movie.title %></h1>
+        <span class="catName p-2 bg-[#63A844] text-white"><%= movie.cat_name || 'N/A' %></span>
+        <h1 class="font-bold text-3xl md:text-6xl"><%= movie.title || 'N/A' %></h1>
         <p>
-            PG-13
+            <%= movie.mpaa_rating || 'N/A' %>
             <a href="" class="text-[#5C7F71]">Action/Adventure, Comedy</a>
         </p>
     </div>
@@ -13,20 +13,20 @@
         </div>
         <div class="flex gap-4 text-center m-2">
             <div>
-                <span class="bg-red-600 text-white rounded-full p-1 text-sm">
-                    Heavy
+                <span class="<%= movie.kids_content_caution === 'heavy' ? 'bg-red-600' : movie.kids_content_caution === 'medium' ? 'bg-yellow-600' : 'bg-green-600' %> text-white rounded-full p-1 text-sm">
+                    <%= movie.kids_content_caution ? movie.kids_content_caution.charAt(0).toUpperCase() + movie.kids_content_caution.slice(1) : 'N/A' %>
                 </span>
                 <p>Kids</p>
             </div>
             <div>
-                <span class="bg-yellow-600 text-white rounded-full p-1 text-sm">
-                    Medium
+                <span class="<%= movie.teens_content_caution === 'heavy' ? 'bg-red-600' : movie.teens_content_caution === 'medium' ? 'bg-yellow-600' : 'bg-green-600' %> text-white rounded-full p-1 text-sm">
+                    <%= movie.teens_content_caution ? movie.teens_content_caution.charAt(0).toUpperCase() + movie.teens_content_caution.slice(1) : 'N/A' %>
                 </span>
                 <p>Teens</p>
             </div>
             <div>
-                <span class="bg-green-600 text-white rounded-full p-1 text-sm">
-                    Light
+                <span class="<%= movie.adults_content_caution === 'heavy' ? 'bg-red-600' : movie.adults_content_caution === 'medium' ? 'bg-yellow-600' : 'bg-green-600' %> text-white rounded-full p-1 text-sm">
+                    <%= movie.adults_content_caution ? movie.adults_content_caution.charAt(0).toUpperCase() + movie.adults_content_caution.slice(1) : 'N/A' %>
                 </span>
                 <p>Adults</p>
             </div>
@@ -34,10 +34,38 @@
     </div>
 </section>
 <main class="main-content bg-gray-100 p-4">
-    <div class="img-container flex justify-center mb-4">
-        <img src="/movies/<%= movie.image_path %>" alt="<%= movie.title %> Poster" class="max-w-full h-auto rounded-md">
+    <div class="img-container flex justify-center" style="background-color: rgba(24, 138, 168, 0.2);">
+        <img src="/movies/<%= movie.image_path || 'default.jpg' %>" alt="<%= movie.title %> Poster" class="max-w-full h-auto rounded-md">
+    </div>
+    <div class="credits mb-4 md:p-2" style="background-color: rgba(24, 138, 168, 0.2);">
+        <h2 class="text-center text-[#006782] text-2xl font-bold">Credits</h2>
+        <div class="main-credits-container grid grid-cols-1 md:grid-cols-2 gap-4 w-full md:w-3/4 mx-auto">
+            <div class="left-credit-container">
+                <h3 class="text-xl font-bold">IN THEATERS</h3>
+                <p class="text-gray-600 mb-2"><%= movie.in_theaters || 'N/A' %></p>
+
+                <h3 class="text-xl font-bold">RUNTIME</h3>
+                <p class="text-gray-600 mb-2"><%= movie.runtime || 'N/A' %></p>
+
+                <h3 class="text-xl font-bold">Cast</h3>
+                <p class="text-gray-600 mb-2"><%= movie.cast || 'N/A' %></p>
+            </div>
+            <div class="right-credit-container">
+                <h3 class="text-xl font-bold">Home Release Date</h3>
+                <p class="text-gray-600 mb-2"><%= movie.release_date || 'N/A' %></p>
+
+                <h3 class="text-xl font-bold">Director</h3>
+                <p class="text-gray-600 mb-2"><%= movie.director || 'N/A' %></p>
+
+                <h3 class="text-xl font-bold">Distributor</h3>
+                <p class="text-gray-600 mb-2"><%= movie.distributor || 'N/A' %></p>
+
+                <h3 class="text-xl font-bold">Reviewer</h3>
+                <p class="text-gray-600 mb-2"><%= movie.reviewer || 'N/A' %></p>
+            </div>
+        </div>
     </div>
     <div class="text-content-container max-w-4xl mx-auto">
-        <%- movie.description %>
+        <%- movie.description || 'No description available.' %>
     </div>
 </main>
