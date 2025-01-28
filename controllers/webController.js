@@ -4,7 +4,9 @@ const { utilFunctiion } = require("../utilt/utillFunction");
 
 module.exports.webHome = (req, res) => {
    movies = [];
+   metas = [];
    title = "Home";
+   metas.push({name:"description",content:"This Is Home Page Of Movie Review Websites"});
    Web.getLatestMoviesByLimit(30,(err, movies) => {
        if (err) {
            console.error('Error fetching movies:', err);
@@ -16,7 +18,7 @@ module.exports.webHome = (req, res) => {
               movie.parseContentHtml = movie.description.replace(/<[^>]*>?/gm, '').substring(0, 100);
               return movie;
          });
-       res.render('tamplate/layout',{body:'home',movies:movies,title:title});
+       res.render('tamplate/layout',{body:'home',movies:movies,title:title,metas:metas});
       });
 };
 
