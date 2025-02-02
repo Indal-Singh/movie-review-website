@@ -26,6 +26,12 @@ LEFT JOIN (
                 callback(null, null);
             }
         });
+    },
+    getCategories: (callback) => {
+        db.query(`SELECT * FROM categories ORDER BY id DESC`, (err, results) => {
+            if (err) return callback(err);
+            callback(null, results);
+        });
     }
 }
 

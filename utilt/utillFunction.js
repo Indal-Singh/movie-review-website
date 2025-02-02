@@ -1,5 +1,5 @@
-module.exports.utilFunctiion = {
-    formatDatae: (dateString) => {
+module.exports.utilFunction = {
+    formatDate: (dateString) => {
         const date = new Date(dateString);
 
         // Use `toLocaleDateString` to format the date in a human-readable way
